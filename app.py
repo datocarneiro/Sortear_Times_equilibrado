@@ -8,7 +8,6 @@ import random
 app = Flask(__name__)
 # teste ramificação 1234
 
-
 def carregar_jogadores(caminho_arquivo='jogadores.json'):
     # Obtenha o caminho absoluto para o diretório do script
     diretorio_atual = os.path.dirname(os.path.abspath(__file__))
@@ -27,8 +26,6 @@ def carregar_jogadores(caminho_arquivo='jogadores.json'):
 jogadores = carregar_jogadores()  # usa o caminho padrão 'jogadores.json'
 # ou
 # jogadores = carregar_jogadores(caminho_arquivo='dadosjogadores/jogadores.json')
-
-
 
 def salvar_jogadores(jogadores):
   with open('jogadores.json', 'w') as file:
