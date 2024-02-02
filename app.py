@@ -5,7 +5,6 @@ import json
 import random
 
 app = Flask(__name__)
-# teste ramificação 1234
 
 def carregar_jogadores(caminho_arquivo='jogadores.json'):
     # Obtenha o caminho absoluto para o diretório do script
@@ -23,8 +22,6 @@ def carregar_jogadores(caminho_arquivo='jogadores.json'):
     return jogadores
 
 jogadores = carregar_jogadores()  # usa o caminho padrão 'jogadores.json'
-# ou
-# jogadores = carregar_jogadores(caminho_arquivo='dadosjogadores/jogadores.json')
 
 def salvar_jogadores(jogadores):
   with open('jogadores.json', 'w') as file:
@@ -34,7 +31,6 @@ def salvar_jogadores(jogadores):
 def criar_tabela_jogadores():
   jogadores = carregar_jogadores()
   salvar_jogadores(jogadores)
-
 
 def adicionar_jogador(nome, nivel, posicao):
   jogadores = carregar_jogadores()
@@ -46,7 +42,6 @@ def adicionar_jogador(nome, nivel, posicao):
   })
   salvar_jogadores(jogadores)
 
-
 def sortear_times(jogadores):
   # Dividir jogadores por posição
   goleiros = [
@@ -55,7 +50,6 @@ def sortear_times(jogadores):
   outros_jogadores = [
       jogador for jogador in jogadores if jogador['posicao'] != 'goleiro'
   ]
-
   # Garantir que os goleiros não caiam no mesmo time
   random.shuffle(goleiros)
   meio_goleiros = len(goleiros) // 2
@@ -81,11 +75,6 @@ def sortear_times(jogadores):
       "somatorio_niveis_time1": somatorio_niveis_time1,
       "somatorio_niveis_time2": somatorio_niveis_time2
   }
-
-
-# ...
-
-# ... (código anterior)
 
 def realizar_sorteio():
     jogadores = carregar_jogadores()
@@ -175,8 +164,6 @@ def realizar_sorteio():
 
         return times_sorteados, None
 
-  #####################
-
 @app.route('/sortear', methods=['POST'])
 def sortear():
   times_sorteados, mensagem_erro = realizar_sorteio()
@@ -193,7 +180,6 @@ def sortear():
   else:
     # print("Erro no sorteio:", mensagem_erro)
     return render_template('erro_sorteio.html', mensagem_erro=mensagem_erro)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -214,7 +200,6 @@ def index():
   jogadores = carregar_jogadores()
   return render_template('index.html', jogadores=jogadores)
 
-
 @app.route('/resetar', methods=['POST'])
 def resetar_status():
   jogadores = carregar_jogadores()
@@ -222,7 +207,6 @@ def resetar_status():
     jogador['status'] = 'pendente'
   salvar_jogadores(jogadores)
   return redirect(url_for('index'))
-
 
 @app.route('/mudar_status/<nome>', methods=['POST'])
 def mudar_status(nome):
@@ -233,7 +217,6 @@ def mudar_status(nome):
       jogador['status'] = novo_status
   salvar_jogadores(jogadores)
   return redirect(url_for('index')) 
-
 
 if __name__ == '__main__':
     # Ativa o modo de depuração para reiniciar automaticamente o servidor em caso de alterações no código
