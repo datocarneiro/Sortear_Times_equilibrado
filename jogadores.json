@@ -136,11 +136,5 @@
     "nivel": 2,
     "posicao": "Atacante",
     "status": "fora"
-  },
-  {
-    "nome": "GABRIEL",
-    "nivel": 2,
-    "posicao": "Atacante",
-    "status": "dentro"
   }
 ]
